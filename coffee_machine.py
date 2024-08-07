@@ -57,15 +57,14 @@ def is_transaction_successful(money_received, drink_cost, profit):
         profit += drink_cost
         return True, profit
     else:
-        print("Sorry that's not enough money. Money refunded")
+        print("Sorry that's not enough money. Money refunded.")
         return False, profit
 
 
-def make_coffee(type_of_coffee, drink, resources):
+def make_coffee(type_of_coffee):
     """
     Make the coffee and reduce the ingredients from the resources.
     """
-    reduce_resources(drink, resources)
     print(f"Here is your {type_of_coffee} ☕️!")
 
 
@@ -121,7 +120,8 @@ def coffee_machine():
                 payment = process_coins()
                 transaction_successful, profit = is_transaction_successful(payment, drink['cost'], profit)
                 if transaction_successful:
-                    make_coffee(choice, drink, resources)
+                    reduce_resources(drink, resources)
+                    make_coffee(choice)
 
 
 if __name__ == "__main__":
